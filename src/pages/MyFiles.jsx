@@ -31,8 +31,10 @@ const MyFiles = () => {
         try {
             const token = await getToken();
             console.log(token);
-            const response = await axios.get(apiEndpoints.FETCH_FILES, {headers: {Authorization: `Bearer ${token}`}});
+            const response = await axios.get(apiEndpoints.FETCH_FILES, {headers: {Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'}});
             if (response.status === 200) {
+                console.log("map issue",response.data)
                 setFiles(response.data);
             }
         }catch (error) {

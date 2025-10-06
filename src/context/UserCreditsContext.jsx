@@ -20,8 +20,12 @@ export const UserCreditsProvider = ({children}) => {
 
         try {
             const token = await getToken();
-            const response = await axios.get(apiEndpoints.GET_CREDITS, {headers: {Authorization: `Bearer ${token}`}});
+            const response = await axios.get(apiEndpoints.GET_CREDITS, {headers: {Authorization: `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'}});
             if (response.status === 200) {
+                console.log("fetched user credits")
+                console.log("fetched user response",response.data)
+                console.log(response.data.credits)
                 setCredits(response.data.credits);
             } else {
                 toast.error('Unable to get the credits.');

@@ -29,8 +29,10 @@ const Dashboard = () => {
                 const res = await axios.get(apiEndpoints.FETCH_FILES, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
+                        'ngrok-skip-browser-warning': 'true'
                     }
                 });
+                console.log("res",res.data)
 
                 // Sort by uploadedAt and take only the 5 most recent files
                 const sortedFiles = res.data.sort((a, b) =>
@@ -103,7 +105,7 @@ const Dashboard = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
+        console.log("response in uploading",response)
             setMessage('Files uploaded successfully!');
             setMessageType('success');
             setUploadFiles([]);
@@ -112,8 +114,10 @@ const Dashboard = () => {
             const res = await axios.get(apiEndpoints.FETCH_FILES, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': 'true'
                 }
             });
+            console.log("res",res.data)
 
             // Sort by uploadedAt and take only the 5 most recent files
             const sortedFiles = res.data.sort((a, b) =>
